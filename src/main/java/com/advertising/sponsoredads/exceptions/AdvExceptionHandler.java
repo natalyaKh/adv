@@ -48,11 +48,22 @@ public class AdvExceptionHandler {
     //    not unique object
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(InvalidCampaignNameException.class)
-    public ErrorDto handleNotUniqueUserException(InvalidCampaignNameException ex) {
+    public ErrorDto handleNotUniqueCampaignNameException(InvalidCampaignNameException ex) {
         return ErrorDto.builder()
             .date(LocalDateTime.now())
             .error(ex.getMessage())
             .status(HttpStatus.CONFLICT.value())
+            .build();
+    }
+
+    //    not unique object
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(CampaignNotFoundException.class)
+    public ErrorDto handleCampaignNotFoundException(CampaignNotFoundException ex) {
+        return ErrorDto.builder()
+            .date(LocalDateTime.now())
+            .error(ex.getMessage())
+            .status(HttpStatus.NOT_FOUND.value())
             .build();
     }
 }

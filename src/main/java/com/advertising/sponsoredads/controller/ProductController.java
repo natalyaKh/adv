@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/{category}")
-    public ResponseEntity serveAd(String category) {
+    public ResponseEntity serveAd(@PathVariable String category) {
         ProductDto rez = campaignService.getPromotedProduct(category);
         return new ResponseEntity(rez, HttpStatus.OK);
     }

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,6 @@ public class Campaign {
         joinColumns = @JoinColumn(name = "campaign_title"),
         inverseJoinColumns = @JoinColumn(name = "product_serial"))
     @ManyToMany
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<>();
 
 }
