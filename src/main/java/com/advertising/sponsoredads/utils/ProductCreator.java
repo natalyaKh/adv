@@ -31,7 +31,7 @@ public class ProductCreator {
     public Set<Product> createProduct(String category) {
         FileReader reader = new FileReader(myFilePath);
         products = mapper.readValue(reader, new TypeReference<Set<Product>>() {});
-        LOGGER.debug("Got product from file ");
+        LOGGER.info("Got product from file ");
         Set<Product> rez = products.stream().filter(p->p.getCategory().equals(category)).collect(Collectors.toSet());
         return rez;
     }
