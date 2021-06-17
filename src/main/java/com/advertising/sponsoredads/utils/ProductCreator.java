@@ -6,15 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
-
-
 import java.io.FileReader;
-import java.util.ArrayList;
-
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,7 +20,8 @@ public class ProductCreator {
     ObjectMapper mapper = new ObjectMapper();
     @Value("${file.link:./product.json}")
     String myFilePath;
-    Set<Product> products;
+
+    Set<Product> products = new HashSet<>();
 
     @SneakyThrows
     public Set<Product> createProduct(String category) {
