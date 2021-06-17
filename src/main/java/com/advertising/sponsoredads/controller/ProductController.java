@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    public ResponseEntity createCampaign(@Valid @RequestPart CampaignDto campaignDto) {
+    public ResponseEntity createCampaign(@Valid @RequestBody CampaignDto campaignDto) {
         ResponseCampaignDto rez = campaignService.createCampaign(campaignDto);
         return new ResponseEntity(rez, HttpStatus.CREATED);
     }

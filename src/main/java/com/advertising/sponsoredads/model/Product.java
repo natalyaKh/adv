@@ -29,8 +29,8 @@ public class Product {
 //        joinColumns = @JoinColumn(name = "product_serial"),
 //        inverseJoinColumns = @JoinColumn(name = "campaign_title"))
 //    @ManyToMany(cascade = CascadeType.ALL)
-    @ManyToMany(mappedBy = "products")
-    private Set<Campaign> campaigns;
+//    @ManyToMany(mappedBy = "products")
+//    private Set<Campaign> campaigns;
 
 
 }
