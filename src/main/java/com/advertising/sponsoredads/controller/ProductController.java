@@ -4,6 +4,7 @@ import com.advertising.sponsoredads.model.Campaign;
 import com.advertising.sponsoredads.model.Product;
 import com.advertising.sponsoredads.repo.CampaignRepository;
 import com.advertising.sponsoredads.repo.ProductRepository;
+import com.advertising.sponsoredads.utils.ProductCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,26 +21,21 @@ public class ProductController {
     ProductRepository productRepository;
     @Autowired
     CampaignRepository campaignRepository;
-
+    @Autowired
+    ProductCreator productCreator;
     @GetMapping()
     public String createProduct(){
+//        Set<Product> products = productCreator.createProduct("PHONE");
+        Set<Product> products = productCreator.createProduct("EAT");
+        System.err.println(products);
 
-        Product product = new Product();
-        product.setProductSerial(UUID.randomUUID().toString());
-        product.setProductTitle("product3");
-        product.setPrice(10.0);
-        product.setCategory("phone");
-        System.err.println(product);
-
-        productRepository.save(product);
+        productRepository.saveAll(products);
         Campaign  campaigns = new Campaign();
         campaigns.setBid(9.9);
         campaigns.setCampaignTitle("camp1");
         campaigns.setCategory("phone");
         campaigns.setStartDate(Timestamp.valueOf(LocalDateTime.now()));
-        Set<Product> pr = new HashSet<>();
-        pr.add(product);
-        campaigns.setProducts(pr);
+        campaigns.setProducts(products);
         campaignRepository.save(campaigns);
         return "Sucesssful";
 

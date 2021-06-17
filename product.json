@@ -1,0 +1,50 @@
+[
+  {
+    "productSerial": "2641743",
+    "price":50.0,
+    "productTitle":"Iphone",
+    "category":"PHONE"
+  },
+  {
+    "productSerial": "2644743",
+    "price":30.0,
+    "productTitle":"Motorola",
+    "category":"PHONE"
+  },
+  {
+    "productSerial": "2143743",
+    "price":20.0,
+    "productTitle":"RealMe",
+    "category":"PHONE"
+  },
+  {
+    "productSerial": "2243743",
+    "price":35.0,
+    "productTitle":"Samsung",
+    "category":"PHONE"
+  },
+  {
+    "productSerial": "2643743",
+    "price":15.0,
+    "productTitle":"LG",
+    "category":"PHONE"
+  },
+  {
+    "productSerial": "2643747",
+    "price":5.0,
+    "productTitle":"APPLE",
+    "category":"EAT"
+  },
+  {
+    "productSerial": "2643742",
+    "price":15.0,
+    "productTitle":"WATER",
+    "category":"EAT"
+  },
+  {
+    "productSerial": "2563742",
+    "price":45.0,
+    "productTitle":"MEET",
+    "category":"EAT"
+  }
+]

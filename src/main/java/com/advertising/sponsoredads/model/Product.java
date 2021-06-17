@@ -25,10 +25,11 @@ public class Product {
     @Column(name= "category", nullable = false)
     String category;
 
-    @JoinTable(name = "campaign_product",
-        joinColumns = @JoinColumn(name = "product_serial"),
-        inverseJoinColumns = @JoinColumn(name = "campaign_title"))
-    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "campaign_product",
+//        joinColumns = @JoinColumn(name = "product_serial"),
+//        inverseJoinColumns = @JoinColumn(name = "campaign_title"))
+//    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "products")
     private Set<Campaign> campaigns;
 
 
