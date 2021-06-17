@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class ProductCreator {
     private static final Logger LOGGER = LogManager.getLogger(ProductCreator.class);
-    ObjectMapper mapper = new ObjectMapper();
+    final ObjectMapper mapper = new ObjectMapper();
     @Value("${file.link:./product.json}")
     String myFilePath;
 
@@ -26,10 +26,9 @@ public class ProductCreator {
     @SneakyThrows
     public Set<Product> createProduct(String category) {
         FileReader reader = new FileReader(myFilePath);
-        products = mapper.readValue(reader, new TypeReference<Set<Product>>() {});
+        products = mapper.readValue(reader, new TypeReference<>() {});
         LOGGER.info("Got product from file ");
-        Set<Product> rez = products.stream().filter(p->p.getCategory().equals(category)).collect(Collectors.toSet());
-        return rez;
+       return products.stream().filter(p->p.getCategory().equals(category)).collect(Collectors.toSet());
     }
 }
 

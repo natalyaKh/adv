@@ -2,7 +2,6 @@ package com.advertising.sponsoredads.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;

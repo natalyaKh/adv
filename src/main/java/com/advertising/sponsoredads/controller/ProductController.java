@@ -3,7 +3,8 @@ package com.advertising.sponsoredads.controller;
 import com.advertising.sponsoredads.dto.CampaignDto;
 import com.advertising.sponsoredads.dto.ProductDto;
 import com.advertising.sponsoredads.dto.ResponseCampaignDto;
-import com.advertising.sponsoredads.service.CampaignServiceImpl;
+import com.advertising.sponsoredads.service.CampaignService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1")
+@AllArgsConstructor
 public class ProductController {
 
-    final CampaignServiceImpl campaignService;
-
-    public ProductController(CampaignServiceImpl campaignService) {
-        this.campaignService = campaignService;
-    }
+    final CampaignService campaignService;
 
     @PostMapping()
     public ResponseEntity createCampaign(@Valid @RequestBody CampaignDto campaignDto) {

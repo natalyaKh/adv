@@ -2,9 +2,9 @@ package com.advertising.sponsoredads.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @AllArgsConstructor
@@ -24,13 +24,5 @@ public class Product {
     String productTitle;
     @Column(name= "category", nullable = false)
     String category;
-
-//    @JoinTable(name = "campaign_product",
-//        joinColumns = @JoinColumn(name = "product_serial"),
-//        inverseJoinColumns = @JoinColumn(name = "campaign_title"))
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @ManyToMany(mappedBy = "products")
-//    private Set<Campaign> campaigns;
-
 
 }

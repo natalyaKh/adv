@@ -2,8 +2,6 @@ package com.advertising.sponsoredads.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
