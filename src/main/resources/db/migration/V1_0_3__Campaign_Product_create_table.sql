@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS product_campaign(
+CREATE TABLE IF NOT EXISTS campaign_product(
     product_serial VARCHAR(100) NOT NULL,
     campaign_title VARCHAR(100) NOT NULL,
     FOREIGN KEY (product_serial) REFERENCES product (product_serial) ON DELETE CASCADE ON UPDATE CASCADE,
