@@ -8,5 +8,5 @@ import lombok.*;
 @Setter
 @Builder
 public class CampaignDto {
-// TODO: 17/06/2021  
+// TODO: 17/06/2021
 }
