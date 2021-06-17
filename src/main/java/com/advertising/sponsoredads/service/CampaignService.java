@@ -2,9 +2,10 @@ package com.advertising.sponsoredads.service;
 
 import com.advertising.sponsoredads.dto.CampaignDto;
 import com.advertising.sponsoredads.dto.ProductDto;
+import com.advertising.sponsoredads.dto.ResponseCampaignDto;
 
 public interface CampaignService {
-    CampaignDto createCampaign(CampaignDto campaignDto);
+    ResponseCampaignDto createCampaign(CampaignDto campaignDto);
 
     ProductDto getPromotedProduct(String category);
 }

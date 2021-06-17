@@ -1,5 +1,17 @@
 package com.advertising.sponsoredads.dto;
 
+import lombok.*;
+
+import javax.persistence.Column;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class ProductDto {
-    // TODO: 17/06/2021
+    String productSerial;
+    Double price;
+    String productTitle;
+    String category;
 }

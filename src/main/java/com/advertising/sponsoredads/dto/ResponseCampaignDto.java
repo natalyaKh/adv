@@ -1,24 +1,22 @@
 package com.advertising.sponsoredads.dto;
 
+import com.advertising.sponsoredads.model.Product;
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class CampaignDto {
-    @NotNull(message = "Title of campaign cannot be null")
+public class ResponseCampaignDto {
     String campaignTitle;
-    @NotNull(message = "Date of starting of campaign cannot be null")
     Timestamp startDate;
-    @Min(value = 0, message = "bid should not be less than 0")
     Double bid;
-    @NotNull(message = "Category of campaign cannot be null")
     String category;
+    Set<Product> products;
 }
