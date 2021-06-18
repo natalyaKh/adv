@@ -20,9 +20,12 @@ public class ProductCreator {
     final ObjectMapper mapper = new ObjectMapper();
     @Value("${file.link:./product.json}")
     String myFilePath;
-
     Set<Product> products = new HashSet<>();
 
+    /**
+     * method for receiving product from json document.
+     * I suppose that in real application here should be request to another service.
+     */
     @SneakyThrows
     public Set<Product> createProduct(String category) {
         FileReader reader = new FileReader(myFilePath);

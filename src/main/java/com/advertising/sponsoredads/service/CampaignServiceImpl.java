@@ -32,6 +32,11 @@ public class CampaignServiceImpl implements CampaignService {
     final ProductRepository productRepository;
     final ProductCreator productCreator;
 
+    /**
+     * method that create a Campaign with specified parameters
+     *
+     * @return Campaign with list of promouted product (selecting by category oif campaign)
+     */
     @Override
     public ResponseCampaignDto createCampaign(CampaignDto campaignDto) {
         checkCampaign(campaignDto);
@@ -45,32 +50,46 @@ public class CampaignServiceImpl implements CampaignService {
         return mapper.map(savedCampaign, ResponseCampaignDto.class);
     }
 
+    /**
+     * method that return product with highest bit from all active campaign
+     * if there is no product in specific active campaign - return product with highest
+     * bid from all active campaign.
+     */
     @Override
     public ProductDto getPromotedProduct(String category) {
         Timestamp dateFrom = Timestamp.valueOf(TODAY.minusDays(9));
         Timestamp dateTo = Timestamp.valueOf(TODAY.plusDays(9));
-
+        //here we getting active campaigns by provided category with highest bit.
         Optional<Campaign> optionalCampaign =
             campaignRepository.getCampaignByCategoryAndDate(category, dateFrom, dateTo);
         Product product;
-        if(optionalCampaign.isEmpty()){
-             product = findHighestBidProductWithNotWorkedCampaign(dateFrom, dateTo);
-        }else{
+        //there is check. If there are active campaign
+        if (optionalCampaign.isEmpty()) {
+            product = findHighestBidProductWithNotWorkedCampaign(dateFrom, dateTo);
+        } else {
             product = findHighestBidProductFromWorkCampaign(optionalCampaign.get().getProducts());
         }
         return mapper.map(product, ProductDto.class);
     }
 
+    /**
+     * Method request list of product for chosen campaign and return one {@link Product}
+     */
     private Product findHighestBidProductFromWorkCampaign(Set<Product> products) {
         Product product = products.iterator().next();
         LOGGER.info("Return product with highest bid for the matching category");
         return product;
     }
 
+    /**
+     * method that start when there is no active campaign by provided category.
+     * if we hve not campaign, we should return product from active campaign with
+     * highest bit.
+     */
     private Product findHighestBidProductWithNotWorkedCampaign(Timestamp dateFrom, Timestamp dateTo) {
         Optional<Campaign> optionalCampaign =
             campaignRepository.getCampaignByDate(dateFrom, dateTo);
-        if(optionalCampaign.isEmpty()) {
+        if (optionalCampaign.isEmpty()) {
             LOGGER.info("Worked Campaign not found for date: from " + dateFrom
                 + " to " + dateTo);
             throw new CampaignNotFoundException("Worked Campaign not found for date: from " + dateFrom
@@ -81,16 +100,28 @@ public class CampaignServiceImpl implements CampaignService {
         return product;
     }
 
+    /**
+     * check title of campaign. If user want create campaign with not unique name -
+     * he receive HttpError with code-> 409
+     */
     private void checkCampaign(CampaignDto campaignDto) {
         Optional<Campaign> optionalCampaign = campaignRepository.findById(campaignDto.getCampaignTitle());
-        if(optionalCampaign.isPresent()){
+        if (optionalCampaign.isPresent()) {
             LOGGER.info("Campaign with title + " + campaignDto.getCampaignTitle()
                 + " exists in DB");
             throw new InvalidCampaignNameException("Campaign with title + " + campaignDto.getCampaignTitle()
-            + " exists in DB", HttpStatus.CONFLICT);
+                + " exists in DB", HttpStatus.CONFLICT);
         }
     }
 
+    /**
+     * this method we need for getting all products by specific Category.
+     * we need it when creating new campaign
+     * I suppose that we should got list of products from another service in
+     * Microservice product
+     *
+     * @param category
+     */
     private Set<Product> getAllProductsByCategory(String category) {
         Set<Product> products = productCreator.createProduct(category);
         productRepository.saveAll(products);
